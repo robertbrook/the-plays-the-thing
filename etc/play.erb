@@ -23,7 +23,7 @@
 <%-       else -%>
 
 <%-         for speaker in part[:speakers] -%>
-<blockquote>
+<p>
 <cite><%= speaker %></cite>&mdash;<br>
 <%-           line_index += 1 %>
 <%-         end -%>
@@ -41,10 +41,10 @@
 <%-               end -%>
 <%-             end -%>
 <%-             if line_index % 5 == 0 %>
-  <a class="line" href="#<%= act_idx %>-<%= scene_idx %>-<%= line_index %>"><%= line_index %></a>
+  <a style="float:right;" href="#<%= act_idx %>-<%= scene_idx %>-<%= line_index %>"><%= line_index %></a>
 <%-             end %>
 <%-           end -%></span><br>
-<%-         end -%></blockquote>
+<%-         end -%></p>
 
 
 <%-       end -%>
