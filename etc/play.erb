@@ -10,48 +10,48 @@
   <h1><%= play[:title] %></h1>
   </header>
 <%- play[:acts].each_with_index do |act, act_idx| %>
-<div class="act">
+<section>
 <h2><%= act[:title] %></h2>
 <%- act[:scenes].each_with_index do |scene, scene_idx| -%>
 <%- line_index = 0 %>
-<div class="scene">
+<section>
 <h3><%= scene[:title] %> </h3>
 <%-     for part in scene[:parts] -%>
 <%-       if part[:stagedir] -%>
-<p class="stagedir"><%= part[:stagedir] %></p>
+<aside><%= part[:stagedir] %></aside>
 <%-           line_index += 1 %>
 <%-       else -%>
-<p>
+
 <%-         for speaker in part[:speakers] -%>
 <blockquote>
-<cite><%= speaker %></cite>
+<cite><%= speaker %></cite>&mdash;<br>
 <%-           line_index += 1 %>
 <%-         end -%>
 <%-         for l in part[:lines] -%>
 <%-           line_index += 1 %>
 <span id="<%= act_idx %>-<%= scene_idx %>-<%= line_index %>" title="Act <%= act_idx + 1 %>, Scene <%= scene_idx + 1 %>, Line <%= line_index %>.">
 <%-           if l[:type] == :stagedir -%>
-<i class="<%= l[:type] %>"><%= l[:text].strip %></i><br />
+<aside class="<%= l[:type] %>"><%= l[:text].strip %></aside><br />
 <%-           else -%>
 <%-             for n in l[:lines] -%>
 <%-               if n[:type] == :parenthetical -%>
-<i class="parenthetical"><%= n[:text].strip %></i>
+<aside class="parenthetical"><%= n[:text].strip %></aside>
 <%-               else -%>
 <%= n[:text].strip %>
 <%-               end -%>
 <%-             end -%>
-<%-             if line_index % 10 == 0 %>
+<%-             if line_index % 5 == 0 %>
   <a class="line" href="#<%= act_idx %>-<%= scene_idx %>-<%= line_index %>"><%= line_index %></a>
 <%-             end %>
 <%-           end -%></span><br>
 <%-         end -%></blockquote>
-</p>
+
 
 <%-       end -%>
 <%-     end -%>
-</div>
+</section>
 <%-   end -%> 
-</div>
+</section>
 <%- end -%>
 </body>
 </html>
