@@ -234,7 +234,7 @@ plays = []
 parse_plays("#{SRC_FOLDER}/*.xml") do |file, play|
   filename = file.gsub("xml","html").gsub("#{SRC_FOLDER}/","#{DEST_FOLDER}/")
   out = do_templating(play_template, {"play"=>play}, filename)
-  puts "#{File.basename(file)} -> #{File.basename(out)}"
+  puts "#{File.basename(file)}\t->\t#{File.basename(out)}"
   plays << {:title => play[:title], :subtitle => play[:subtitle], :file => File.basename(out)}
 end
 
